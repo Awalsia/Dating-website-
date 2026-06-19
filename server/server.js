@@ -5,11 +5,14 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors({
-  origin: "https://dating-website-stefano.netlify.app",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
-}));
+app.use(
+  cors({
+    origin: "https://dating-website-stefano.netlify.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -27,20 +30,21 @@ app.post("/api/date-request", async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      family: 4,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
     const senderName = `"Stefano Fabiano ❤️" <${process.env.EMAIL_USER}>`;
 
     await transporter.sendMail({
       from: senderName,
-      replyTo: process.env.EMAIL_USER,
+      replyTo: email,
       to: process.env.EMAIL_USER,
       subject: "New date request ❤️",
       text: `
@@ -78,18 +82,21 @@ I'll contact you soon 💌
       `,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Emails sent successfully",
     });
   } catch (error) {
-    console.error(error);
+    console.error("Email error:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       message: "Email could not be sent",
+      error: error.message,
     });
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
