@@ -107,3 +107,19 @@ input {
   margin-bottom: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+input[type="date"],
+input[type="time"] {
+  color: #333;
+  font-size: 18px;
+  -webkit-text-fill-color: #333;
+}
+
+input[type="date"]::-webkit-datetime-edit,
+input[type="time"]::-webkit-datetime-edit {
+  color: #333;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
