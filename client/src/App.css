@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd6e8, #fff0f6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  padding: 35px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h1,
+.question-screen h1 {
+  color: #d63384;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.main-btn,
+.yes-btn {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 999px;
+  background: #ff4d8d;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.question-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  padding-top: 180px;
+}
+
+.yes-btn {
+  margin-top: 40px;
+}
+
+.no-btn {
+  position: absolute;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 999px;
+  background: #eeeeee;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+.activities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.activity-btn {
+  padding: 12px;
+  border: 1px solid #ff9ec4;
+  background: white;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.activity-btn.selected {
+  background: #ff4d8d;
+  color: white;
+}
+.time-comment {
+  margin-top: 8px;
+  color: #d63384;
+  font-size: 15px;
+  font-weight: 600;
+}
+.main-gif {
+  width: 220px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
